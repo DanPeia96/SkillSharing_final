@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Login</title>
+		<link rel="stylesheet" href="estilos/estilos.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="transparente">
+			<video class="videoLogin" muted autoplay loop=0><source src="videos/UJI.mp4" type="video/mp4"></video>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class="centradoInterfazLogin" align="center">
+			<div class="canvasInferior"></div>
+			<div class="formularioLogin">
+				<div><h1>Inicio de sesión</h1></div>
+				<form action="#" th:action="@{/login}" th:object="${user}" method="post" >
+					<div style="padding: 10px" >
+						<span id="username"></span>
+						<input type="text" class="form-control" th:field="*{userId}" placeholder="username" maxlength="9">
+						<td th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="error"></td>
+					</div>
+
+					<div style="padding: 10px" >
+						<span id="password"></span>
+						<input type="password" class="form-control" th:field="*{password}" placeholder="password" maxlength="50">
+						<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
+					</div>
+
+					<button type="submit" class="btn btn-success"><font size="4">Entrar</font></button>
+				</form>
+
+				<div style="padding: 10px" ><a class="btn btn-default" href="/">Volver</a></div>
+			</div>
+			</div>
+		</div>
+	</body>
+</html>

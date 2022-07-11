@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Sesión del alumno</title>
+		<link rel="stylesheet" href="../static/estilos/estilos.css" th:href="@{/estilos/estilos.css}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	</head>
+	<body>
+	<!--HEADER -->
+	<div th:replace="fragments/top" ></div>
+
+	<!--MAIN-->
+	<main>
+		<div class="barraOpcionesAlumno titulo">Opciones del alumno</div>
+		<br>
+		<div class="menuOpcionesAlumno" align="center">
+
+			<div><strong><a href="/oferta/list">Ver ofertas y demandas</a></strong><p>Esta opción permite ver/crear/modificar ofertas/demandas, las cuales podrán ser solicitadas como colaboraciónes por medio de los estudiantes.</p></div>
+
+			<div><strong><a th:href="@{/oferta/misofertas}">Mis ofertas</a></strong><p>Esta opción permite mostrar y gestionar las ofertas registradas por el alumno.</p></div>
+
+			<div><strong><a href="/solicitud/listPendientes">Solicitudes pendientes</a></strong><p>Esta opción permite crear solicitudes a partir de las ofertas que los alumnos ofrecen.</p></div>
+
+			<div><strong><a href="/colaboracion/misColaboraciones">Mis colaboraciones</a></strong><p>Esta opción permite mostrar y gestionar las colaboraciones realizadas por el alumno.</p></div>
+		</div>
+
+		<div><a class="btn btn-primary" href="/logout">Cerrar sesión</a></div>
+	</main>
+
+	<!--FOOTER -->
+	<div th:replace="fragments/base" ></div>
+
+
+	</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Lista de habilidades</title>
+</head>
+
+<body>
+<!--HEADER -->
+<div th:replace="fragments/top"></div>
+<main>
+    <h1 align="center" class="titulo">Lista de las Incidencias</h1>
+    <div align="center" class="container" th:if="*{session.user==null}">
+        <a class="btn btn-secondary" th:href="/" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+    </div><br>
+    <div align="center" class="container" th:if="*{session.user!=null} and *{session.user.admin}">
+        <a class="btn btn-secondary" th:href="@{/usuarios/sesionPromotor}" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+        <br>
+    </div>
+    <div align="center" class="container" th:if="*{session.user!=null} and !*{session.user.admin}">
+        <a class="btn btn-secondary" href="/usuarios/sesionAlumno" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+    </div><br>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>DNI Alumno</th>
+            <th>Nombre Alumno</th>
+            <th>Fecha</th>
+            <th>DNI Promotor</th>
+            <th>Motivo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="incidencia: ${incidencias}">
+            <td th:text="${incidencia.usuario.userId}"></td>
+            <td th:text="${incidencia.usuario.nombre_completo}"></td>
+            <td th:text="${incidencia.fecha}"></td>
+            <td th:text="${incidencia.id_promotor}"></td>
+            <td th:text="${incidencia.descripcion}"></td>
+            </td></tr>
+        </tbody>
+    </table>
+    <div align="center" class="container" th:if="*{session.user==null}">
+        <a class="btn btn-secondary" th:href="/" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+    </div>
+    <div align="center" class="container" th:if="*{session.user!=null} and *{session.user.admin}">
+        <br>
+        <a class="btn btn-secondary" th:href="@{/usuarios/sesionPromotor}" role="button" ><i class="bi bi-house"></i>Menú Principal</a>
+    </div>
+    <div align="center" class="container" th:if="*{session.user!=null} and !*{session.user.admin}">
+        <a class="btn btn-secondary" href="/usuarios/sesionAlumno" role="button" ><i class="bi bi-house"></i>Menú Principal</a>
+    </div>
+</main>
+<!--FOOTER -->
+<div th:replace="fragments/base" ></div>
+</body>
+</html>

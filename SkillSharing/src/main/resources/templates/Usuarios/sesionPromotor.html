@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sesión del promotor</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/estilos/estilos.css" th:href="@{/estilos/estilos.css}">
+</head>
+<body>
+
+<!--HEADER -->
+<div th:replace="fragments/top" ></div>
+
+<main>
+    <div class="barraOpcionesPromotor titulo">Opciones del promotor</div>
+    <br>
+    <div class="menuOpcionesAlumno" align="center">
+
+        <div><strong><a href="/usuarios/list">Consultar estudiantes</a></strong><p>Esta opción permite ver todos los estudiantes de la plataforma.</p></div>
+
+        <div><strong><a href="/habilidad/list">Consultar habilidades</a></strong><p>Esta opción permite mostrar, añadir y modificar las habilidades actuales.</p></div>
+
+        <div><strong><a href="/colaboracion/list">Consultar colaboraciones</a></strong><p>Esta opción permite mostrar las colaboraciones registradas por los estudiantes.</p></div>
+
+        <div><strong><a href="/oferta/listpr">Consultar ofertas/demandas</a></strong><p>Esta opción permite mostrar las ofertas y demandas registradas por los estudiantes.</p></div>
+
+        <div><strong><a href="/incidencia/list">Consultar incidencias</a></strong><p>Esta opción permite mostrar las incidencias registradas por los promotores.</p></div>
+        <div><strong><a href="/estadisticas">Consultar estadísticas</a></strong><p>Esta opción permite mostrar las estadísticas acerca de los usuarios.</p></div>
+
+    </div>
+    <br>
+    <div><a class="btn btn-primary" href="/logout">Cerrar sesión</a></div>
+</main>
+
+<!--FOOTER -->
+<div th:replace="fragments/base" ></div>
+
+     </body>
+     </html>

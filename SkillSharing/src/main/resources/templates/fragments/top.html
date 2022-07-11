@@ -1,0 +1,38 @@
+<link href="../static/estilos/estilos" rel="stylesheet" th:href="@{/estilos/estilos.css}"/>
+
+<header>
+    <div class="prueba">
+        <a href="/imagenes/UJI.png"><img class="logoHeader" src="/imagenes/LogoUJI.png" alt="LogoUJI"></a>
+        <a href="/imagenes/SK.png"><img class="logoHeader" src="/imagenes/SK.png" style="max-width:75px" alt="LogoSkillSharing"></a>
+        <nav class="barraNavegacion">
+            <ul>
+                <li><a class="nombreAlumno">Bienvenido a SkillSharing</a></li>
+            </ul>
+
+        </nav>
+
+        <div th:if="${session.user==null}" class="tex">
+            <nav class="barraNavegacion">
+                <ul>
+                    <li><a href="oferta/list">Ver ofertas y demandas</a></li>
+                    <li><<a href="#">¿Cómo funciona el saldo?</a></li>
+                    <li><a href="#">¿Problemas?</a></li>
+                </ul>1
+
+            </nav>
+            <div>
+                <a class="btn btn-default" href="/login">Iniciar Sesión</a>
+            </div>
+        </div>
+        <div th:if="${session.user!=null}" class="tex">
+            <div><a class="nombreAlumno" th:text="'Hola ' +*{session.user.nombre_completo}"></a></div>
+            <div th:if="${session.user.admin==false}">
+                <a class="nombreAlumno" th:text="'Saldo: ' +*{session.user.saldo_horas}+'h'"></a>
+            </div>
+            <div><a class="btn btn-primary" href="/logout">Cerrar Sesión</a></div>
+        </div>
+    </div>
+    <div th:if="${session.user!=null} AND ${session.user.admin==true}">
+    <hr>
+    </div>
+</header>

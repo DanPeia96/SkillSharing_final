@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Página principal</title>
+    <link rel="stylesheet" href="estilos/estilos.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div th:replace="fragments/top"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<main>
+    <div align="center">
+        <h1>¡Diviertete dando clases y aprendiendo de más gente!</h1>
+        <h3>Aprender desde un punto de vista más cercano a ti</h3>
+        <br>
+        <p style="font-size: 17px">Lo unico que necesitas es ¡Saldo! Y aunque la aplicación es altruista, no vale con
+            solo recibir clases. Hay un sistema de saldo basado en horas.</p>
+        <b style="font-size: 17px">¡Así es, se paga con horas!</b>
+    </div>
+
+
+    <h2 class="margenDerecho">Actividades físicas</h2>
+    <div class="enLinea">
+        <img class="imagenesMainIndex" src="imagenes/Deporte.png" alt="Deporte">
+        <p align="justify" style="font-size: 17px">¿Necesitas unas clases de deporte? ¿Quieres presentarte a alguna
+            competición interna o externa? Si lo que necesitas es más nivel o conocer más técnicamente un deporte ¡No lo
+            dudes! Los alumnos ofrecen ayuda para que el rendimiento de quien solicite una clase mejore. ¿Quién mejor
+            que un alumno experimentado en un deporte?
+            <br>
+            <br>
+            La universidad también cuenta con servicios y actividades --> <a
+                    href="https://www.uji.es/serveis/se/altres/targetaesportiva/?msclkid=05bada91a60311ecb56d4bfb06f4ecd8"
+                    target="_blank">Infórmate</a></p>
+    </div>
+
+    <h2 class="margenIzquierdo">Idiomas y lenguas</h2>
+    <div class="enLinea">
+        <p align="justify" style="font-size: 17px">Inglés, francés, alemán... Acuerda clases para poder mantener
+            conversaciones y mejorar en ese idioma atascado. Es muy sencillo, adapta tu nivel y disfruta de un
+            aprendizaje divertido y comparte buenos momentos mientras relacionas vocabulario, gramatica y obtienes
+            pericia y fluidez.
+            <br>
+            <br>
+            La universidad también cuenta con servicios y actividades --> <a
+                    href="https://www.uji.es/serveis/slt/base/adf/serveis/cursos/?msclkid=67ceb084a60811ec82ad8b393ea326a4"
+                    target="_blank">Infórmate</a></p>
+        <img class="imagenesIdiomas" src="imagenes/Idiomas.jpg" alt="Idiomas">
+
+    </div>
+
+    <h2 class="margenDerecho">Estudios universitarios</h2>
+    <div class="enLinea">
+        <img class="imagenesEstudios" src="imagenes/Estudios.jpg" alt="Estudios">
+        <p align="justify" style="font-size: 17px"> Si tienes conocimientos sobre alguna materia, se te da bien explicar
+            o incluso crees que necesitas algún repaso en ciertas asignaturas que no acaban de encajar. No lo dudes más,
+            solicita apoyo para las materias que esten disponibles o anotate para ayudar a quellas personas que estan
+            empezando o quieren conocer más.</p>
+    </div>
+    <a class="btn btn-primary" href="oferta/list">Ver ofertas y demandas</a>
+</main>
+
+<!--FOOTER -->
+<div  th:replace="fragments/base" ></div>
+
+</body>
+</html>

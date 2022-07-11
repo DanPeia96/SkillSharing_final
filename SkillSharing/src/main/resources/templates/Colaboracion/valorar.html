@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Valora la colaboración</title>
+</head>
+
+<body>
+
+<div th:replace="fragments/top" ></div>
+
+<main>
+    <h1 align="center">Valora la colaboración</h1>
+
+    <form class="form-horizontal" action="#" th:action="@{/colaboracion/update}" th:object="${colaboracion}" method="post">
+        <div class="input-group mb-3">
+            <label>Introduce el número de horas totales: </label>
+            <span id="horas"></span>
+            <input type="number" class="form-control" th:field="*{horas}" placeholder=0>
+        </div>
+            <div class="input-group mb-3">
+                <label>Puntúa la colaboración: </label>
+                <span id="evaluacion"></span>
+                <select th:field="*{evaluacion}">
+                    <option value="0">Elige una puntuación</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <p th:if="${#fields.hasErrors('evaluacion')}" th:errors="*{evaluacion}" class="error"></p>
+            </div>
+
+
+        <div class="form-group row">
+            <div class="d-grid gap-2">
+                <input type="checkbox" class="checconf" th:id="'valorar'">
+                <div align="center" class="container">
+                    <label th:for="'valorar'" class="btn btn-primary" role="button">Valorar</label>
+                </div>
+                <div class="confirmacion">
+                    <p class="color_text">¿Estás seguro de que quieres valorar la colaboración?</p>
+                    <table class="botones">
+                        <tr>
+                            <td><label class="btn btn-default" th:for="'valorar'" role="button"> Volver </label></td>
+                            <td><button type="submit" class="btn btn-primary">Confirmar</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <label class="fondoOscuro2"></label>
+            </div>
+            <div><br><br><br><br></div>
+            <div align="center" class="container">
+                <a class="btn btn-default" th:href="@{/colaboracion/misColaboraciones}" role="button" ><font size="4"> Volver</font></a>
+                <a class="btn btn-secondary" href="/usuarios/sesionAlumno" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+            </div>
+        </div>
+    </form>
+</main>
+
+<div th:replace="fragments/base" ></div>
+
+</body>
+</html>

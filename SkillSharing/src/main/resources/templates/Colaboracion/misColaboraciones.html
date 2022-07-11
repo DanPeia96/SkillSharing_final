@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="../static/estilos/estilos.css" th:href="@{/estilos/estilos.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Lista de usuarios</title>
+</head>
+<div th:replace="fragments/top" ></div>
+<body>
+<main>
+    <h1 align="center" class="titulo">Lista de colaboraciones</h1>
+    <div align="center" class="container" th:if="*{session.user==null}">
+        <a class="btn btn-secondary" th:href="/" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+    </div><br>
+    <div align="center" class="container" th:if="*{session.user!=null} and *{session.user.admin}">
+        <a class="btn btn-secondary" th:href="@{/usuarios/sesionPromotor}" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+        <br><br>
+    </div>
+    <div align="center" class="container" th:if="*{session.user!=null} and *{!session.user.admin}">
+        <a class="btn btn-secondary" href="/usuarios/sesionAlumno" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+    </div><br>
+
+    <div style="display: flex">
+        <div class="grid" th:each="colaboracion: ${colaboraciones}">
+            <div class="caja color_text">
+                <div class="nombre"><label th:text="${colaboracion.solicitud.oferta.nombre_habilidad}"></label></div>
+                <div class="caja-interno">
+                    <div class="nombre">Nivel:
+                        <label th:if="${colaboracion.solicitud.oferta.nivel_habilidad}==1" th:text="'Bajo'"></label>
+                        <label th:if="${colaboracion.solicitud.oferta.nivel_habilidad}==2" th:text="'Medio'"></label>
+                        <label th:if="${colaboracion.solicitud.oferta.nivel_habilidad}==3" th:text="'Alto'"></label>
+                    </div>
+
+                    <div th:if="${colaboracion.solicitud.oferta.tipo}==true">
+
+                        <div th:if="${colaboracion.solicitud.oferta.usuario.userId}==*{session.user.userId}">
+                            <div class="nombre"><label th:text="'Profesor: tú'"></label></div>
+                            <div class="nombre"><label th:text="'Alumno: '+${colaboracion.solicitud.usuario_solicitante.nombre_completo}"></label></div>
+                        </div>
+                        <div th:if="${colaboracion.solicitud.oferta.usuario.userId}!=*{session.user.userId}">
+                            <div class="nombre"><label th:text="'Profesor: '+${colaboracion.solicitud.usuario_solicitante.nombre_completo}"></label></div>
+                            <div class="nombre"><label th:text="'Alumno: tú'"></label></div>
+                        </div>
+                    </div>
+
+
+
+                    <div th:if="${colaboracion.solicitud.oferta.tipo}==false">
+
+                        <div th:if="${colaboracion.solicitud.usuario_solicitante}==*{session.user}">
+                            <div class="nombre"><label th:text="'Profesor: tú'"></label></div>
+                            <div class="nombre"><label th:text="'Alumno: '+${colaboracion.solicitud.oferta.getUsuario().getNombre_completo()}"></label></div>
+                        </div>
+                        <div th:if="${colaboracion.solicitud.usuario_solicitante}!=*{session.user}">
+                            <div class="nombre"><label th:text="'Profesor: '+${colaboracion.solicitud.usuario_solicitante.nombre_completo}"></label></div>
+                            <div class="nombre"><label th:text="'Alumno: tú'"></label></div>
+                        </div>
+                    </div>
+
+                    <div class="nombre"><label th:text="${'Duración: '+colaboracion.solicitud.getOferta().getFecha_inicio()+'-'+colaboracion.solicitud.getOferta().getFecha_fin()}"></label></div>
+                </div>
+                <div class="centrado" th:if="${colaboracion.estado}">
+                    <input type="checkbox" class="checconf" th:id="${colaboracion.codigo_colaboracion}">
+                    <label th:for="${colaboracion.codigo_colaboracion}" class="btn btn-primary" role="button">Finalizar</label>
+                    <div class="confirmacion">
+                        <p class="color_text">¿Estás seguro de que quieres finalizar la colaboración?</p>
+                        <table class="botones">
+                            <tr>
+                                <td><label class="btn btn-default" th:for="${colaboracion.codigo_colaboracion}" role="button"> Volver </label></td>
+                                <td><a class="btn btn-warning" th:href="@{/colaboracion/cancelar/{id}(id=${colaboracion.getCodigo_colaboracion()})}" role="button" >Confirmar</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <label class="fondoOscuro2"></label>
+                </div>
+                <div class="centrado" th:if="${colaboracion.estado==false} and ${colaboracion.evaluacion==0} and ((${colaboracion.solicitud.oferta.tipo}==true and ${colaboracion.solicitud.usuario_solicitante.getUserId()}==*{session.user.getUserId()}) or (${colaboracion.solicitud.oferta.tipo}!=true and ${colaboracion.solicitud.usuario_solicitante.getUserId()}!=*{session.user.getUserId()}))">
+                    <a class="btn btn-primary" th:href="@{/colaboracion/update/{id}(id=${colaboracion.getCodigo_colaboracion()})}" role="button">Valorar</a>
+                </div>
+                <div class="centrado" th:if="${colaboracion.estado==false} and ${colaboracion.evaluacion>0}">
+                    <p>Finalizada</p>
+                </div>
+            </div>
+    </div>
+    </div>
+
+
+    <br>
+    <div align="center" class="container" th:if="*{session.user==null}">
+        <a class="btn btn-secondary" th:href="/" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+    </div>
+    <div align="center" class="container" th:if="*{session.user!=null} and *{session.user.admin}">
+        <a class="btn btn-secondary" th:href="@{/usuarios/sesionPromotor}" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+    </div>
+    <div align="center" class="container" th:if="*{session.user!=null} and !*{session.user.admin}">
+        <a class="btn btn-secondary" href="/usuarios/sesionAlumno" role="button" ><i class="bi bi-house"></i> Menú Principal</a>
+    </div>
+</main>
+<!--FOOTER -->
+<div th:replace="fragments/base" ></div>
+</body>
+</html>
