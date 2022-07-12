@@ -126,17 +126,6 @@ public class OfertaControlador {
         Usuario usuario=(Usuario) sesion.getAttribute("user");
         oferta.setUsuario(usuario);
 
-        System.out.println("________________________________________________________________________");
-        System.out.println("id: "+oferta.getCodigo_oferta());
-        System.out.println("f_ INI: "+oferta.getFecha_inicio());
-        System.out.println("F_ fin: "+oferta.getFecha_fin());
-        System.out.println("id_usuario: "+oferta.getUsuario());
-        System.out.println("tipo: "+oferta.getTipo());
-        System.out.println("nombre habilidad: "+oferta.getNombre_habilidad());
-        System.out.println("nivel habilidad: "+oferta.getNivel_habilidad());
-        System.out.println("________________________________________________________________________");
-
-
         sesion.removeAttribute("oferta");
         ofertaDao.addOferta((oferta));
         return "redirect:misofertas";

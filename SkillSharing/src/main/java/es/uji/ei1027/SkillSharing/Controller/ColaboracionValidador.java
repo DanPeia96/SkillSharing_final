@@ -18,8 +18,8 @@ public class ColaboracionValidador implements Validator{
         Colaboracion colaboracion = (Colaboracion) target;
 
         if (colaboracion.getHoras()<0 ||colaboracion.getHoras()>20)
-            errors.rejectValue("saldo_horas", "Colaboracion_campos_sin_rellenar",
-                    "Debe facilitarlos.");
+            errors.rejectValue("saldo_horas", "Cantidad_horas_anormal",
+                    "La duración de un curso no puede ser negativo o durar más de 20h.");
     }
 
     public void validateValoracion(Object target, Errors errors) {

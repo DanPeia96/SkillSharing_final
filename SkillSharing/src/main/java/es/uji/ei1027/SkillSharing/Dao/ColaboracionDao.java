@@ -102,6 +102,19 @@ public class ColaboracionDao {
         }
     }
 
+   /* public float getNotaMediaDeUsuario(String userId){
+        try {
+            return jdbcTemplate.queryForObject("SELECT AVG(c.horas) as media FROM" +
+                                        " colaboracion as c join solicitud as s using(codigo_solicitud) " +
+                                        "join oferta as o using(codigo_oferta) " +
+                                        "where o.id_usuario=?",
+                                         float media, userId);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return 0;
+        }
+    }*/
+
     public List<Colaboracion> getColaboraciones() {
         try {
             return jdbcTemplate.query("SELECT c.codigo_colaboracion, c.horas, c.evaluacion, c.estado, c.codigo_solicitud," +
