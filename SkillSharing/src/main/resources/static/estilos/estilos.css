@@ -19,6 +19,10 @@ form.vermas input{
     width: 300px;
 }
 
+form.vermas tr{
+    margin-bottom: 10px;
+}
+
 form.vermas input.descripcion{
     height: 200px;
 }

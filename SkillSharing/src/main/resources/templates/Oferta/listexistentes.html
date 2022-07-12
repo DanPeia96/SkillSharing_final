@@ -54,7 +54,7 @@
                             <p class="color_text">¿Estás seguro de que quieres colaborar?</p>
                             <table class="botones">
                                 <tr>
-                                    <td><label class="botonConf" th:for="${oferta.codigo_oferta}" role="button"> Volver </label></td>
+                                    <td><label class="btn btn-default" th:for="${oferta.codigo_oferta}" role="button"> Volver </label></td>
                                     <td><a class="btn btn-warning" th:href="@{/solicitud/add/{idOferta}(idOferta=${oferta.codigo_oferta})}" role="button" >Confirmar</a></td>
                                 </tr>
                             </table>

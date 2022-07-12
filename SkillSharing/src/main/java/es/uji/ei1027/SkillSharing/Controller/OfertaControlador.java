@@ -99,6 +99,8 @@ public class OfertaControlador {
 
         OfertaValidador ofertaValidator = new OfertaValidador();
 
+        oferta.setUsuario(usuario);
+
         ofertaValidator.validate(oferta, bindingResult);
         if (usuario.getSaldo_horas()<-20 && oferta.getTipo())
             bindingResult.rejectValue("tipo", "saldo_negativo", "No puedes crear ofertas con el saldo de horas menor que -20");
@@ -109,8 +111,20 @@ public class OfertaControlador {
         oferta.setNivel_habilidad(Integer.parseInt(oferta.getNombre_habilidad().split(" ")[1]));
         oferta.setNombre_habilidad(oferta.getNombre_habilidad().split(" ")[0]);
 
+
         sesion.setAttribute("oferta",oferta);
         List<Oferta> ofertas=ofertaDao.getOfertasByHabilidad(oferta.getNombre_habilidad(), oferta.getNivel_habilidad(), oferta.getTipo());
+
+    /*    System.out.println("________________________________________________________________________");
+        System.out.println("id: "+oferta.getCodigo_oferta());
+        System.out.println("f_ INI: "+oferta.getFecha_inicio());
+        System.out.println("F_ fin: "+oferta.getFecha_fin());
+        System.out.println("id_usuario: "+oferta.getUsuario());
+        System.out.println("tipo: "+oferta.getTipo());
+        System.out.println("nombre habilidad: "+oferta.getNombre_habilidad());
+        System.out.println("nivel habilidad: "+oferta.getNivel_habilidad());
+        System.out.println("________________________________________________________________________");
+*/
         if (!ofertas.isEmpty()){
             model.addAttribute("ofertas",ofertas);
             return "oferta/listexistentes";
